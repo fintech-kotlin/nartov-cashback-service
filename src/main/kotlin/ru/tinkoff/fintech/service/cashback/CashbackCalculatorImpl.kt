@@ -2,6 +2,7 @@ package ru.tinkoff.fintech.service.cashback
 
 import ru.tinkoff.fintech.model.TransactionInfo
 import ru.tinkoff.fintech.service.cashback.modes.All
+import ru.tinkoff.fintech.service.cashback.modes.Beer
 import ru.tinkoff.fintech.service.cashback.modes.Black
 import ru.tinkoff.fintech.service.cashback.modes.TripleSix
 import kotlin.math.round
@@ -17,14 +18,13 @@ class CashbackCalculatorImpl : CashbackCalculator {
 
     override fun calculateCashback(transactionInfo: TransactionInfo): Double {
         // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        val modes = listOf(Black(), TripleSix(), All())
+        val modes = listOf(Black(), TripleSix(), All(), Beer())
         var result: Double = .0
         //var result2 = modes.reduce {result, mode ->  result + mode.calculate(transactionInfo)}
-
         for (f in modes) {
             result += f.calculate(transactionInfo)
         }
-
+        result = round(result * 100) / 100
         return minOf(3000.0 - transactionInfo.cashbackTotalValue, result)
     }
 

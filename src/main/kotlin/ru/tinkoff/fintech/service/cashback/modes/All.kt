@@ -11,9 +11,9 @@ class All : CashbackMode {
         with(transactionInfo)
         {
             if (loyaltyProgramName == LOYALTY_PROGRAM_ALL && mccCode == MCC_SOFTWARE) {
-                var kop: Int = ceil(transactionSum * 100).toInt()
+                var kop = ceil(transactionSum * 100).toInt()
                 if (isPalindrome(kop.toString(), 1))
-                    return lcm(firstName.length, lastName.length).toDouble()/10
+                    return lcm(firstName.length, lastName.length)*transactionSum/100_000.0
             }
             else return .0
         }
