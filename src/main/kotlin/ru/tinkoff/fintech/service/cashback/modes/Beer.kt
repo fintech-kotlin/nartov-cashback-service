@@ -8,7 +8,6 @@ import java.util.*
 
 class Beer : CashbackMode {
     override fun calculate(transactionInfo: TransactionInfo): Double {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         with(transactionInfo) {
             if (loyaltyProgramName == LOYALTY_PROGRAM_BEER && mccCode == MCC_BEER)
             {
